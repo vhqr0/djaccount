@@ -1,0 +1,63 @@
+<!doctype html>
+
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>
+      DJAccount
+      {% block title %}
+      {%endblock%}
+    </title>
+    {% include "djaccount/configs/bootstrap.djhtml" %}
+    <link href="{% static 'djaccount/css/bootstrap-django-form.css' %}" rel="stylesheet" />
+    {% block head %}
+    {% endblock %}
+  </head>
+  <body>
+    <header class="sticky-top bg-light shadow-lg">
+      <nav class="navbar navbar-expand-md">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">
+            DJAccount
+            {% if user.is_authenticated %}
+              <small class="text-black-50"><em>(current login: {{ user }})</em></small>
+            {% endif %}
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#header-collapse"
+          >
+            <span class="navbar-toggler-icon" />
+          </button>
+          <div id="header-collapse" class="navbar-collapse collapse">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'djaccount:login' %}">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'djaccount:logout' %}">Logout</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'djaccount:password_change' %}">Change Password</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'djaccount:password_reset' %}">Reset Password</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <hr class="invisible" />
+
+    {% include "djaccount/components/messages.djhtml" %}
+
+    {% block body %}
+    {% endblock %}
+  </body>
+</html>

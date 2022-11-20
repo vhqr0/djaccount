@@ -1,0 +1,13 @@
+{% extends "djaccount/base.djhtml" %}
+
+{% block body %}
+  <div class="container-md">
+    <div class="row">
+      <div class="alert alert-success col my-1 shadow">
+        {% block message %}
+        {% endblock %}
+      </div>
+    </div>
+    <a class="btn btn-outline-secondary float-end my-2" href="/">Back to Index</a>
+  </div>
+{% endblock %}
